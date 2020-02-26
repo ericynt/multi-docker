@@ -15,10 +15,10 @@ after_success:
   - docker build -t ericynt/multi-server ./server
   - docker build -t ericynt/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push ericynt/multi-client
-  - docker push ericynt/multi-nginx
-  - docker push ericynt/multi-server
-  - docker push ericynt/multi-worker
+  - docker push ey0001/ericynt/multi-client
+  - docker push ey0001/ericynt/multi-nginx
+  - docker push ey0001/ericynt/multi-server
+  - docker push ey0001/ericynt/multi-worker
 
 language: generic
 
