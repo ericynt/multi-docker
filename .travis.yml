@@ -10,15 +10,15 @@ script:
 #  - docker CI=true ericynt/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ericynt/multi-client ./client
-  - docker build -t ericynt/multi-nginx ./nginx
-  - docker build -t ericynt/multi-server ./server
-  - docker build -t ericynt/multi-worker ./worker
+  - docker build -t ey0001/multi-client ./client
+  - docker build -t ey0001/multi-nginx ./nginx
+  - docker build -t ey0001/multi-server ./server
+  - docker build -t ey0001/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push ey0001/ericynt/multi-client
-  - docker push ey0001/ericynt/multi-nginx
-  - docker push ey0001/ericynt/multi-server
-  - docker push ey0001/ericynt/multi-worker
+  - docker push ey0001/multi-client
+  - docker push ey0001/multi-nginx
+  - docker push ey0001/multi-server
+  - docker push ey0001/multi-worker
 
 language: generic
 
