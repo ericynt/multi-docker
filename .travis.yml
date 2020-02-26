@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ericynt/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true ericynt/react-test npm test
+#  - docker CI=true ericynt/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t ericynt/multi-client ./client
+  - docker build -t ericynt/multi-nginx ./nginx
+  - docker build -t ericynt/multi-server ./server
+  - docker build -t ericynt/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push ericynt/multi-client
+  - docker push ericynt/multi-nginx
+  - docker push ericynt/multi-server
+  - docker push ericynt/multi-worker
+
+language: generic
+
